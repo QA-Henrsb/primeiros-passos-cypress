@@ -8,10 +8,24 @@ describe('Orange HRM  Test', () => {
     wrongCredentialAlert: "[role='alert']"
   }
 
+  const UserData = {
+    userSucess:{
+      username: 'Admin',
+      password: 'admin123'
+    },
+    userFailure:{
+      username: 'Teste',
+      password: 'Teste'
+    }
+
+  }
+
+
+
   it('Login - Sucess', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get(selectorsList.usernameField).type('Admin')
-    cy.get(selectorsList.passwordField).type('admin123')
+    cy.get(selectorsList.usernameField).type(UserData.userSucess.username)
+    cy.get(selectorsList.passwordField).type(UserData.userSucess.password)
     cy.get(selectorsList.loginButton).click()
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
     cy.get(selectorsList.dashboardGrid)
@@ -19,8 +33,8 @@ describe('Orange HRM  Test', () => {
 
   it('Login - Failure', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get(selectorsList.usernameField).type('Teste')
-    cy.get(selectorsList.passwordField).type('Teste')
+    cy.get(selectorsList.usernameField).type(UserData.userFailure.username)
+    cy.get(selectorsList.passwordField).type(UserData.userFailure.password)
     cy.get(selectorsList.loginButton).click()
     cy.get(selectorsList.wrongCredentialAlert)
   })
