@@ -13,3 +13,6 @@ Thumbs.db
 # Cypress
 cypress/videos/
 cypress/screenshots/
+
+#Packages
+package-lock.json
